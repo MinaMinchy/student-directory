@@ -1,20 +1,23 @@
 @students = []
 def interactive_menu
   loop do
+    print_menu
+    process(gets.chomp)
+  end
+end
 
-  print_menu
-    selection = gets.chomp
-    # 3. do what the user has asked
-    case selection
+
+
+def process(selection)
+  case selection
     when "1"
       input_students
     when "2"
       show_students
     when "9"
-      exit # this will cause the program to terminate
+      exit
     else
-      puts "I don't know what you meant, try again"
-    end
+      puts "I don't know what you mean, try again"
   end
 end
 
@@ -26,7 +29,7 @@ end
 
 def show_students
   print_header
-  print
+  print_students_list
   print_footer
 end
 
@@ -55,7 +58,7 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 
-def print
+def print_students_list
   @students.each_with_index do |student, index|
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
